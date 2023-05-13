@@ -123,6 +123,10 @@ h1 {
   line-height: 1.5;
 }
 
+.input-group-text{
+  white-space: normal;
+}
+
 .dropdown-menu {
   text-align: center;
   width: 75%;
