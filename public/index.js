@@ -528,7 +528,7 @@ function saveGame() {
   const data = { game };
   console.log(game);
 
-  fetch('/submit-data', {
+  fetch('/1vs1/submit-data', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

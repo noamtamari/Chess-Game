@@ -8,7 +8,7 @@ const date = require(__dirname + "/date.js");
 
 const app = express();
 
-mongoose.connect("mongodb://127.0.0.1:27017/chessGamesDB");
+mongoose.connect("mongodb+srv://noamtamari98:noam8deshalit@cluster0.mwumbab.mongodb.net/chessGamesDB");
 const gameSchema = new mongoose.Schema({
   date: String,
   board: {
