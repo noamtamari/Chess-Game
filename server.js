@@ -68,39 +68,36 @@ app.post("/1vs1", function (req, res) {
   let radioTime = req.body.radioTime;
   let unlimited = req.body.unlimited;
   let undo = req.body.undo;
-  
-  if (counter === 0) {
-    counter++;
-    switch (radioTime) {
-      case "custom":
-        if (undo === "on") {
-          res.render("index", { savedBoard: "undefined", WithTime: true, time: customTime, undo: true });
-        } else {
-          res.render("index", { savedBoard: "undefined", WithTime: true, time: customTime, undo: false });
-        }
-        break;
 
-      default:
-        if (undo === "on") {
-          res.render("index", { savedBoard: "undefined", WithTime: false, time: "unlimited", undo: true });
-        } else {
-          res.render("index", {
-            savedBoard: "undefined", WithTime: false,
-            time: "unlimited",
-            undo: false,
-          });
-        }
-        break;
 
-    }
+  counter++;
+  switch (radioTime) {
+    case "custom":
+      if (undo === "on") {
+        res.render("index", { savedBoard: "undefined", WithTime: true, time: customTime, undo: true });
+      } else {
+        res.render("index", { savedBoard: "undefined", WithTime: true, time: customTime, undo: false });
+      }
+      break;
 
-    // console.log("customTime = " +customTime +"is selected : " +radioTime +" unlimited is selected ? " +unlimited +" able previous moves ? " +undo);
-    // console.log(customTime);
-  }
-  else {
-    console.log(req.body);
+    default:
+      if (undo === "on") {
+        res.render("index", { savedBoard: "undefined", WithTime: false, time: "unlimited", undo: true });
+      } else {
+        res.render("index", {
+          savedBoard: "undefined", WithTime: false,
+          time: "unlimited",
+          undo: false,
+        });
+      }
+      break;
 
   }
+
+  // console.log("customTime = " +customTime +"is selected : " +radioTime +" unlimited is selected ? " +unlimited +" able previous moves ? " +undo);
+  // console.log(customTime);
+
+
   console.log(req.body);
 
   // res.sendFile(__dirname + "/index.html");
@@ -116,7 +113,7 @@ app.post("/1vs1/:dateOfGame", function (req, res) {
   const gameID = req.params.dateOfGame;
 
   //IF THE PLAYER SELECED A SAVED GAME 
-  
+
   if (gameID !== 'submit-data') {
     Game.findById({ _id: gameID })
       .then((foundGame) => {
