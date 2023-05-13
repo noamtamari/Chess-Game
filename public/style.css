@@ -1,0 +1,348 @@
+body {
+  text-align: center;
+  background-color: #283149;
+  align-items: center;
+}
+
+h1 {
+  color: #dbedf3;
+  font-family: "Arvo", cursive;
+  text-shadow: 3px 0 #da0463;
+}
+
+#title {
+  font-size: 3rem;
+}
+
+.chessSqure {
+  outline: none;
+  /* display: inline-block; */
+  width: 12.5%;
+  height: 12.5%;
+  text-align: center;
+  padding: 0;
+  /* border:0; */
+}
+
+.black {
+  background-color: rgb(142, 169, 105);
+  width: 12.5%;
+  height: 12.5%;
+}
+
+.white {
+  background-color: white;
+  width: 12.5%;
+  height: 12.5%;
+}
+
+#board {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+}
+
+#footer {
+  font-size: 1rem;
+  color: white;
+}
+
+.fa-chess-board,
+.fa-people-line,
+.fa-handshake {
+  font-size: 300%;
+  margin-bottom: 3%;
+}
+
+.clicked {
+  border: 10% solid;
+  background-color: yellow;
+}
+
+.can-move {
+  border: 10% solid;
+  border-color: orange;
+}
+
+.eat-title {
+  font-size: 1.5rem;
+}
+
+.eaten {
+  width: 60%;
+  height: 60%;
+  text-align: center;
+  margin: auto;
+  /* margin-bottom: 20px; */
+}
+
+.eaten-piece {
+  width: 6.25%;
+  height: 6.25%;
+}
+
+.can-eat {
+  border: 20% solid;
+  border-color: blue;
+}
+
+#pawn-upgrade {
+  z-index: 1;
+  width: 15%;
+  height: 10%;
+  background-color: #283149;
+  margin: auto;
+}
+
+.upgrade-button {
+  width: 34%;
+  height: 34%;
+  margin: auto;
+}
+
+#upgrade-title {
+  color: white;
+  font-family: "Arvo", cursive;
+}
+
+/* Home Page section */
+#pricing {
+  padding: 100px;
+}
+
+#home-title {
+  color: white;
+}
+
+.pricing-column {
+  padding: 3% 3%;
+}
+
+.price-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.dropdown-menu {
+  text-align: center;
+  width: 75%;
+
+}
+
+.dropdown-toggle {
+  width: 75%;
+}
+
+.form-check-reverse {
+  text-align: left;
+}
+
+.time {
+  width: 250px;
+  font-size: 0.5rem;
+  position: relative;
+  left: -200px;
+  bottom: -7.5px;
+  margin: auto;
+  text-align: left;
+
+
+}
+
+#pawn-upgrade {
+  position: sticky;
+  top: 50%;
+  z-index: 1;
+}
+
+.white-time-title {
+  width: 100px;
+  background-color: white;
+  text-shadow: none;
+  color: black;
+  text-align: center;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  cursor: default;
+}
+
+#black-time {
+  margin-bottom: 20px;
+  align-items: left;
+}
+
+.black-time-title {
+  width: 100px;
+  margin-right: 2%;
+  background-color: black;
+  text-shadow: none;
+  color: white;
+  text-align: center;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  cursor: default;
+}
+
+.unlimited {
+  width: 30%;
+  margin: auto auto 1% auto;
+}
+
+
+
+
+
+/* CSS */
+.pause-button,
+.undo-button,
+.restart-button,
+.save-button {
+  width: 30%;
+  appearance: none;
+  background-color: #539265;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 10px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#save {
+  margin-top: 1%;
+  width: 92%;
+}
+
+
+.pause-button:focus:not(:focus-visible):not(.focus-visible),
+.undo-button:focus:not(:focus-visible):not(.focus-visible),
+.restart-button:focus:not(:focus-visible):not(.focus-visible),
+.save-button:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.pause-button:hover,
+.undo-button:hover,
+.restart-button:hover,
+.save-button:hover {
+  background-color: #2c974b;
+}
+
+.pause-button:focus,
+.undo-button:focus,
+.restart-button:focus,
+.save-button:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+
+.pause-button :active,
+.undo-button :active,
+.restart-button :active,
+.save-button:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+.undo-button,
+.restart-button,
+.save-button {
+  width: 30%;
+  font-size: 1rem;
+  display: inline-block;
+  /* margin-bottom: 5%; */
+  background-color: #539265;
+}
+
+.undo-button:disabled,
+.restart-button:disabled,
+.pause-button:disabled,
+.save-button:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+
+}
+
+.save-button {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  /* position: absolute; */
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  /* margin: -76px 0 0 -76px; */
+  margin-left: 3%;
+  border: 2px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 2px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.loader-finished {
+  top: 50%;
+  left: 50%;
+  transform: rotate(45deg);
+  width: 5px;
+  height: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border-bottom-width: 4px;
+    border-right-width: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    padding-left: 2px;
+    margin-top: 5px;
+  border: solid #4caf50;
+  /* Set the approve mark color */
+  border-width: 0 4px 4px 0;
+  padding: 3px;
+  border-radius: 2px;
+  transition: opacity 0.3s;
+  /* Add transition effect for opacity change */
+  /* opacity: 1; */
+}
+
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

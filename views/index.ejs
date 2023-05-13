@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Chess Game</title>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+        crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div name="eaten-white" class="eaten">
+    <h1 class="eat-title">Eaten white pieces</h1>
+  </div>
+
+  <h1 id="turn">White Turn</h1>
+  <% if (undo===true && WithTime!==true) { %>
+    <div class="unlimited">
+      <button class="undo-button">Undo
+      </button>
+      <form action="/1vs1" method="post">
+      </form>
+    </div>
+    <% }%>
+
+      <% if (WithTime===true) { %>
+
+        <div class="row">
+          <div id="black-time" class="time">
+            <h1 class="black-time-title" value=<%=time %>> <%= time %>
+            </h1>
+            <% if (undo===true) { %>
+              <button class="undo-button">Undo
+              </button>
+              <% }%>
+                <button class="pause-button">Pause</button>
+                <button class="restart-button">Restart</button>
+                <button id=save class="save-button">Save Game <div class="loader" hidden></div></button>
+          </div>
+        </div>
+        <div id="board"></div>
+        <p id="savedBoard" hidden>
+          <%=savedBoard %>
+        </p>
+        <div id="white-time" class="time">
+          <h1 class="white-time-title" value=<%=time %> ><%= time %>
+          </h1>
+        </div>
+
+        <% } else { %>
+          <button class="restart-button">Restart</button>
+          <button id=save class="save-button">Save Game <div class="loader" hidden></div></button>
+          <div id="board">
+            <p id="savedBoard" hidden>
+              <%=savedBoard %>
+            </p><p id="turn" hidden>
+              <%=savedBoard %>
+            </p>
+          </div>
+
+          <% } %>
+
+
+
+            <!-- <div id="board"><button class="btn btn-primary"id="start1" name="start1vs1">Click Here To Start 1vs1 Game</button></div> -->
+            <div name="eaten-black" class="eaten">
+              <h1 class="eat-title">Eaten black pieces</h1>
+            </div>
+
+            <footer id="footer">Made By Noam Tamari From Israel</footer>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+            <script src="/index.js"></script>
+</body>
+
+</html>
