@@ -7,6 +7,7 @@ var path = require('path');
 // const getDate = require("./date");
 const date = require(__dirname + "/date.js");
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -22,11 +23,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+const store = new MongoDBStore({
+  uri: "mongodb+srv://noamtamari98:noam8deshalit@cluster0.mwumbab.mongodb.net/chessUsersDB",
+  collection: 'sessions'
+});
+
+store.on('error', function (error) {
+  console.log(error);
+});
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }
+  cookie: { secure: false },
+  store: store
 }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -285,6 +295,14 @@ app.post("/login", function (req, res) {
 })
 
 app.get("/logout", function (req, res) {
+  req.logout(function (err) {
+    if (err) {
+      console.log("logout error " + err);
+    }
+    res.redirect('/');
+  });
+});
+app.post("/logout", function (req, res) {
   req.logout(function (err) {
     if (err) {
       console.log("logout error " + err);
