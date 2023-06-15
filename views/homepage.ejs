@@ -8,7 +8,7 @@
   <title>Chess Game</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="\style.css" />
 
   <!-- font awsome -->
   <script src="https://kit.fontawesome.com/bc6cb35e9e.js" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
 <body>
 
   <section id="pricing">
-
+    <h1>Welcome To Noam's Chess Project</h1>
     <h2 id="home-title">Selec Type Of Game</h2>
     <!-- <p>Simple and affordable price plans for your and your dog.</p> -->
 
@@ -82,16 +82,15 @@
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <% games.forEach(game=>{ %>
-                  <form action="/1vs1/<%= game[0] %>" method="post">
+                  <form action="/1vs1/<%= game.id %>" method="post">
                     <li><button class="dropdown-item" type="submit">
-                        <%= game[1] %>
+                        <%= game.date %>
                       </button></li>
                   </form>
                   <% })%>
               </ul>
             </div>
             <br>
-            <button type="button" class="btn btn-lg btn-block btn-dark" style="width: 100%;">Play</button>
           </div>
         </div>
       </div>
@@ -103,10 +102,7 @@
           </div>
           <div class="card-body">
             <i class="fa-solid fa-people-line"></i>
-            <p>Pirority Listing</p>
-            <p>Unlimited Matches</p>
-            <p>Unlimited Messages</p>
-            <p>Unlimited App Usage</p>
+            <p>In the next update</p>
             <button type="button" class="btn btn-lg btn-block btn-dark" style="width: 100%;">Play</button>
           </div>
         </div>

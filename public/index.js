@@ -79,19 +79,19 @@ if (document.getElementById("savedBoard").innerHTML.includes("undefined")) {
 
   turnCounter = savedBoard.turnCounter;
   clickButtonArray = [];
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     //  function to be called after the page has loaded
-    afterMoveAnalyze(movesArray[movesArray.length-1][4]);
+    afterMoveAnalyze(movesArray[movesArray.length - 1][4]);
   });
- 
+  if (savedBoard.turn === "black") {
+    switchTurn("white");
+  } else {
+    switchTurn("black");
+  }
 
 }
 
-if (savedBoard.turn === "black") {
-  switchTurn("white");
-} else {
-  switchTurn("black");
-}
+
 
 
 
@@ -369,7 +369,9 @@ function undoMove() {
   }
   turnCounter--;
   if (turnCounter === 0) {
-    undoButton.disabled = true;
+    if (undoButton !== undefined) {
+      undoButton.disabled = true;
+    }
     saveButton.disabled = true;
     restartButton.disabled = true;
   }

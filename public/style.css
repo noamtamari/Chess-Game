@@ -1,7 +1,11 @@
 body {
   text-align: center;
-  background-color: #283149;
+  background-color: #3c3939;
   align-items: center;
+}
+
+#register{
+  display:inline ;
 }
 
 h1 {
