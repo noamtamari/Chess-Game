@@ -86,7 +86,7 @@ passport.deserializeUser(function (id, done) {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/ChessGame"
+  callbackURL: "https://chess-game-4hdo.onrender.com/auth/google/ChessGame"
 },
   function (accessToken, refreshToken, profile, cb) {
     console.log(profile);
@@ -252,7 +252,7 @@ app.get("/auth/google", passport.authenticate('google', {
 }));
 
 app.get("/auth/google/ChessGame",
-  passport.authenticate('google', { failureRedirect: "/login" }),
+  passport.authenticate('google', { failureRedirect: "/login", failureMessage: true }),
   function (req, res) {
     User.findById(req.user.id).then(foundUser => {
       // Successful authentication, redirect home.
@@ -279,9 +279,11 @@ app.post("/login", function (req, res) {
     username: req.body.username,
     password: req.body.password
   });
+  console.log(user)
   req.login(user, function (err) {
-    if (err) {
+    if (err || user.username === '' || user.password === '') {
       console.log("login error " + err);
+      res.redirect('/login');
     } else {
       User.find({ "username": user.username }).then(foundUser => {
         var userGames = foundUser[0].games;
@@ -320,8 +322,9 @@ app.post("/register", function (req, res) {
     // console.log(res);
     if (err) {
       console.log("Register Error" + err);
+      res.redirect('/register');
     } else {
-      passport.authenticate("local")(req, res, function () {
+      passport.authenticate("local", { failureRedirect: '/login', failureMessage: true },function (req, res) {
         console.log("Register succsuflly");
         User.findById(req.user.id).then(foundUser => {
           var userGames = foundUser.games;
