@@ -1,4 +1,3 @@
-
 var clickCount = 0;
 var clickButtonArray = new Array(2);
 var possibleMovesArray = [];

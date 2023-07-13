@@ -1,9 +1,10 @@
 body {
   background-color: #E8ECEF;
+  margin-top:10%;
 }
 
 .centered {
-  padding-top: 200px;
+  
   text-align: center;
 }
 

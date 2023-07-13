@@ -8,10 +8,10 @@ body {
   display:inline ;
 }
 
-h1 {
+h1,h2 {
   color: #dbedf3;
   font-family: "Arvo", cursive;
-  text-shadow: 3px 0 #da0463;
+  text-shadow: 3px 0 #363133;
 }
 
 #title {
@@ -115,7 +115,7 @@ h1 {
 }
 
 #home-title {
-  color: white;
+  color: #363133;
 }
 
 .pricing-column {

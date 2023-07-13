@@ -78,7 +78,6 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (id, done) {
   User.findById(id).then(user => {
-    console.log("find")
     done(null, user);
   })
 });
@@ -87,6 +86,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: "https://chess-game-4hdo.onrender.com/auth/google/ChessGame"
+  // callbackURL: "http://localhost:3000/auth/google/ChessGame"
 },
   function (accessToken, refreshToken, profile, cb) {
     console.log(profile);
@@ -99,32 +99,6 @@ passport.use(new GoogleStrategy({
 app.get("/", function (req, res) {
   let gamesData = [];
   res.render("home.ejs");
-
-  // Game.find({}).then((games) => {
-  //   if (games.length === 0) {
-  //     //res.render("homepage.ejs", { games: gamesData });
-  //     res.render("login.ejs");
-  //   } else {
-  //     games.forEach(game => {
-  //       gamesData.push([game.id, game.date]);
-  //     });
-  //     //res.render("homepage.ejs", { games: gamesData });
-  //     res.render("login.ejs");
-  //     // games.forEach(game => {
-  //     //   console.log(game.date);
-  //     // });
-
-  //   }
-  // }).catch(err => {
-  //   console.log(err);
-  // });
-
-  // let day = date.getDate();
-
-  // res.render("list", {
-  //      listTitle: day ,
-  //      newListItem: items
-  //     });
 });
 
 app.post("/1vs1", function (req, res) {
@@ -164,15 +138,10 @@ app.post("/1vs1", function (req, res) {
 
   console.log(req.body);
 
-  // res.sendFile(__dirname + "/index.html");
+
 });
 
 app.post("/1vs1/:dateOfGame", function (req, res) {
-  // res.render("index", {
-  //   WithTime: false,
-  //   time: "unlimited",
-  //   undo: false,
-  // });
 
   const gameID = req.params.dateOfGame;
 
@@ -314,25 +283,43 @@ app.post("/logout", function (req, res) {
 });
 
 app.get("/register", function (req, res) {
-  res.render("register.ejs");
+  if (req.isAuthenticated()) {
+    User.findById(req.user.id).then(foundUser => {
+      var userGames = foundUser.games;
+      res.render("homepage.ejs", { games: userGames });
+    })
+  } else{
+    res.render("register.ejs");
+  }
+  
 })
 app.post("/register", function (req, res) {
-  console.log(req.body.username);
-  User.register({ username: req.body.username }, req.body.password, function (err, user) {
-    // console.log(res);
-    if (err) {
-      console.log("Register Error" + err);
-      res.redirect('/register');
-    } else {
-      passport.authenticate("local", { failureRedirect: '/login', failureMessage: true },function (req, res) {
-        console.log("Register succsuflly");
-        User.findById(req.user.id).then(foundUser => {
-          var userGames = foundUser.games;
-          res.render("homepage.ejs", { games: userGames });
+  if (req.isAuthenticated()) {
+    User.findById(req.user.id).then(foundUser => {
+      var userGames = foundUser.games;
+      res.render("homepage.ejs", { games: userGames });
+    })
+  } else{
+    console.log(req.body.username);
+    User.register({ username: req.body.username }, req.body.password, function (err, user) {
+      // console.log(res);
+      if (err) {
+        console.log("Register Error" + err);
+        res.redirect('/register');
+      } else {
+        console.log("Register : "+req.body.username)
+        res.render("homepage.ejs", { games: [] });
+        passport.authenticate("local", { failureRedirect: '/login', failureMessage: true }, function (req, res) {
+          console.log("Register succsuflly");
+          User.findById(req.user.id).then(foundUser => {
+            var userGames = foundUser.games;
+            res.render("homepage.ejs", { games: userGames });
+          })
         })
-      })
-    }
-  })
+      }
+    })
+  }
+ 
 
 })
 
